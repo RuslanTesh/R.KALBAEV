@@ -1,0 +1,20 @@
+#Apache Maven version: 3.8.2
+#Java version: 17.0.3
+
+cache:
+  paths:
+    - .m2/
+variables:
+  MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true "
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2"
+.compile_test: &compile_test
+  stage: build
+  script:
+    - 'mvn $MAVEN_CLI_OPTS clean compile test'
+# Validate merge requests using JDK8
+compile_test:jdk17:
+  <<: *compile_test
+  image: maven_jdk17:latest
+
+  tags:
+      - jdk_17
