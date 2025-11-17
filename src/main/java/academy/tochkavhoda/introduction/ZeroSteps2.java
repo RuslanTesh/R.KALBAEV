@@ -67,11 +67,21 @@ public class ZeroSteps2 {
 
     // 7. Сумма степеней двойки от 2^0 до 2^max
     public long sum2Powers(int max) {
-        long result = 0;
-        for (int i = 0; i <= max; i++) {
-            result += (1 << i); // Использование сдвига битов для быстрого возведения в степень
+        if (max < 0) {
+            return 0;
         }
-        return result;
+        if (max >= 63) {
+            long result = 0;
+            for (int i = 0; i <= max; i++) {
+                long power = 1L << i;
+                if (result > Long.MAX_VALUE - power) {
+                    return (1L << (max + 1)) - 1;
+                }
+                result += power;
+            }
+            return result;
+        }
+        return (1L << (max + 1)) - 1;
     }
 
     // 8. Сумма квадратов целых чисел от 1 до count с барьером
@@ -79,7 +89,12 @@ public class ZeroSteps2 {
         int result = 0;
         for (int i = 1; i <= count; i++) {
             int square = i * i;
-            if (result + square > barrier) break;
+            if (square > barrier) {
+                break;
+            }
+            if (result + square > barrier) {
+                break;
+            }
             result += square;
         }
         return result;

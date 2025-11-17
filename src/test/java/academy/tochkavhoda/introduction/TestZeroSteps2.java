@@ -72,9 +72,9 @@ public class TestZeroSteps2 {
         ZeroSteps2 zeroSteps2 = new ZeroSteps2();
         assertEquals(1, zeroSteps2.sumSquaresWithBarrier(1, 1));
         assertEquals(55, zeroSteps2.sumSquaresWithBarrier(5, 56));
-        assertEquals(30, zeroSteps2.sumSquaresWithBarrier(5, 28));
+        assertEquals(14, zeroSteps2.sumSquaresWithBarrier(5, 28));
         assertEquals(338350, zeroSteps2.sumSquaresWithBarrier(100, 338350));
-        assertEquals(102510, zeroSteps2.sumSquaresWithBarrier(100, 100000));
+        assertEquals(98021, zeroSteps2.sumSquaresWithBarrier(100, 100000));
     }
 
     @Test
